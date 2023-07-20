@@ -1,0 +1,10 @@
+header{
+    background-color: #D6D2C4;
+    border-bottom: 1px solid black
+}
+body{
+    background-color: #D6D2C4;
+}
+#logo{
+    max-width: 100px;
+}
