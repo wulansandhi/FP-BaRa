@@ -21,6 +21,9 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    //home
+    Route::get('home', [HomeController::class, 'index'])->name('home');
+
     // Article
     Route::resource('admin', ArticleController::class);
 
