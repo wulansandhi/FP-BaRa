@@ -2,7 +2,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light" id="nav">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('home') }}">
                 <img src="{{ Vite::asset('resources/images/BaRa.png') }}" alt="Logo" class="img-fluid" id="logo">
             </a>
 
@@ -34,8 +34,8 @@
                                 </form>
                             </li>
                         @else
-                            <li><a class="dropdown-item" href="#">Login</a></li>
-                            <li><a class="dropdown-item" href="#">Register</a></li>
+                            <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
+                            <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
                         @endif
                     </ul>
                 </div>
