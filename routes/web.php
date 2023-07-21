@@ -17,7 +17,8 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('home');
+    $pageTitle = "BaRa - Baca Aksara";
+    return view('welcome', compact("pageTitle"));
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -26,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Article
     Route::resource('admin', ArticleController::class);
-
+    Route::get('home', [HomeController::class, 'index'])->name('home');
 });
 
 Auth::routes();
