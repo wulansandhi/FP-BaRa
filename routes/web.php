@@ -16,13 +16,12 @@ use Illuminate\Http\Request;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/', function () {
     $pageTitle = "BaRa - Baca Aksara";
     return view('welcome', compact("pageTitle"));
 });
-
-Route::get('home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
     // Article
@@ -31,3 +30,5 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Auth::routes();
+
+Route::get('/articles/{id}/{title}', [ArticleController::class, 'show'])->name('articles.show');
