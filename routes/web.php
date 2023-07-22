@@ -21,10 +21,10 @@ Route::get('/', function () {
     return view('welcome', compact("pageTitle"));
 });
 
-Route::middleware(['auth'])->group(function () {
     //home
     Route::get('home', [HomeController::class, 'index'])->name('home');
 
+Route::middleware(['auth'])->group(function () {
     // Article
     Route::resource('admin', ArticleController::class);
     Route::get('home', [HomeController::class, 'index'])->name('home');

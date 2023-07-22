@@ -20,7 +20,7 @@ initial-scale=1.0">
             <form action="{{ route('admin.destroy', ['admin' => $articles->id]) }}" method="POST">
                 @csrf
                 @method('delete')
-                <button type="submit" class="btn btn-outline-dark btn-sm
+                <button type="submit" class="btn btn-danger btn-outline-light btn-sm
 me-2"><i class="bi-trash"></i></button>
             </form>
         </div>

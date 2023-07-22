@@ -12,31 +12,29 @@
             </div>
         </div>
         <hr>
-        <div class="table-responsive border p-3 rounded-3">
-            <table class="table table-bordered table-hover table-striped mb-0 bg-white">
-                <thead>
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr class="table-secondary">
+                    <th>Judul</th>
+                    <th>Penulis</th>
+                    <th>Tanggal Rilis</th>
+                    <th>Isi</th>
+                    <th>Kategori</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($articles as $articles)
                     <tr>
-                        <th>Judul</th>
-                        <th>Penulis</th>
-                        <th>Tanggal Rilis</th>
-                        <th>Isi</th>
-                        <th>Kategori</th>
-                        <th></th>
+                        <td>{{ $articles->judul }}</td>
+                        <td>{{ $articles->penulis }}</td>
+                        <td>{{ $articles->tanggalRilis }}</td>
+                        <td>{{ $articles->isi }}</td>
+                        <td>{{ $articles->kategori->deskripsi }}</td>
+                        <td>@include('admin.actions')</td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach ($articles as $articles)
-                        <tr>
-                            <td>{{ $articles->judul }}</td>
-                            <td>{{ $articles->penulis }}</td>
-                            <td>{{ $articles->tanggalRilis }}</td>
-                            <td>{{ $articles->isi }}</td>
-                            <td>{{ $articles->kategori->deskripsi }}</td>
-                            <td>@include('admin.actions')</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 @endsection
