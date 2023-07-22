@@ -23,11 +23,10 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    //home
-
     // Article
     Route::resource('admin', ArticleController::class);
-    Route::get('home', [HomeController::class, 'index'])->name('home');
 });
 
 Auth::routes();
+
+Route::get('/articles/{id}/{title}', [ArticleController::class, 'show'])->name('articles.show');
