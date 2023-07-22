@@ -8,3 +8,16 @@ body{
 #logo{
     max-width: 100px;
 }
+.hero{
+    height: 90vh;
+    margin-left: 30vh;
+    margin-top: 90px;
+}
+
+.title-hero{
+    margin-left: 150px;
+}
+
+h1{
+    font-size: 90pt;
+}

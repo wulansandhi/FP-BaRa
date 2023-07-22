@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/', function () {
     $pageTitle = "BaRa - Baca Aksara";
@@ -23,7 +24,6 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     //home
-    Route::get('home', [HomeController::class, 'index'])->name('home');
 
     // Article
     Route::resource('admin', ArticleController::class);
