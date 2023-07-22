@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -24,6 +25,9 @@ class HomeController extends Controller
     public function index()
     {
         $pageTitle = 'Home';
-        return view('Home', ['pageTitle' => $pageTitle]);
+        $articles = Article::all(); // Fetch all articles from the database
+        return view('Home', compact('pageTitle', 'articles'));
     }
+
+
 }

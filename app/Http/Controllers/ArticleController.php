@@ -48,9 +48,13 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id, $title)
     {
-        //
+        $article = Article::findOrFail($id);
+        return view('admin.show', [
+            'pageTitle' => urldecode($title),
+            'article' => $article,
+        ]);
     }
 
     /**
