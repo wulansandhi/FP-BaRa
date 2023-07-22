@@ -1,22 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-sm my-5">
+    <div class="container-sm mx-15 my-5">
         <div class="row justify-content-center">
-            <div class="p-5 bg-light rounded-3 col-xxl-4 border">
+            <div class="p-5 bg-light rounded-3 col-xxl-7 border">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="mb-3 text-center">
-                        <h4>Employee Data Master</h4>
+                        <h4>Login BaRa</h4>
                     </div>
                     <hr>
 
                     <div class="row mb-3">
-                        <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                        <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Alamat Email') }}</label>
 
                         <div class="col-md-6">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
+                                placeholder="Masukkan Alamat Email">
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -27,12 +28,12 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                        <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Kata Sandi') }}</label>
 
                         <div class="col-md-6">
                             <input id="password" type="password"
                                 class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="current-password">
+                                autocomplete="current-password" placeholder="Masukkan">
 
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -49,7 +50,7 @@
                                     {{ old('remember') ? 'checked' : '' }}>
 
                                 <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
+                                    {{ __('Ingat Akun') }}
                                 </label>
                             </div>
                         </div>
@@ -57,13 +58,16 @@
 
                     <div class="row mb-0">
                         <div class="col-md-8 offset-md-4">
+                            <button type="submit" class="btn btn-danger">
+                                {{ __('Back') }}
+                            </button>
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Login') }}
                             </button>
 
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
+                                    {{ __('Lupa Password?') }}
                                 </a>
                             @endif
                         </div>
