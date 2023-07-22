@@ -19,8 +19,9 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         @if (Auth::check())
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="{{ route('admin.index') }}">Article</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile') }}">Profil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile') }}">Ubah Password</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.index') }}">Artikel</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
