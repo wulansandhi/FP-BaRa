@@ -24,6 +24,6 @@ class HomeController extends Controller
     public function index()
     {
         $pageTitle = 'Home';
-        return view('Home', ['pageTitle' =>$pageTitle]);
+        return view('Home', ['pageTitle' => $pageTitle]);
     }
 }
