@@ -44,7 +44,7 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
         </div>
         <div class="kanan col-6 col-md-3">
-            <h3 class="m-3">Paling Dicari</h3>
+            <h3 class="m-3">Paling Dicarssi</h3>
             <hr>
         </div>
     </div>
