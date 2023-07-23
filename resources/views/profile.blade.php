@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="container-md mt-5">
-        <form method="POST" action="#">
+        <form method="POST" action="{{ route('profile.update') }}">
             @csrf
+            @method('POST')
             <div class="mb-3 text-center">
                 <h2>Profil</h2>
             </div>
@@ -14,14 +15,7 @@
 
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                        value="{{ $errors->any() ? old('name') : $user->name }}" placeholder="Masukkan Nama">
-
-                    @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                    <input id="name" type="text" class="form-control" value="{{ old('name', $user->name) }}" placeholder="Masukkan Nama">
                 </div>
             </div>
 
@@ -31,8 +25,7 @@
 
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                        value="{{ $errors->any() ? old('name') : $user->email }}" placeholder="Masukkan Alamat Email">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $user->email) }}" placeholder="Masukkan Alamat Email">
 
                     @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -43,15 +36,25 @@
             </div>
 
             <div class="row mb-3">
-                <label for="tanggalLahin" class="col-md-4 col-form-label text-md-start">{{ __('Tanggal Lahir') }}</label>
+                <label for="tanggalLahir" class="col-md-4 col-form-label text-md-start">{{ __('Tanggal Lahir') }}</label>
             </div>
 
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <input id="tanggalLahir" type="tanggalLahir" class="form-control @error('tanggalLahir') is-invalid @enderror"
-                        value="{{ $errors->any() ? old('name') : $user->tanggalLahir }}" placeholder="Masukkan Alamat tanggalLahir">
+                    <input id="tanggalLahir" type="date" class="form-control" value="{{ $user->tanggalLahir }}">
+                </div>
+            </div>
 
-                    @error('tanggalLahir')
+            <div class="row mb-3">
+                <label for="telepon" class="col-md-4 col-form-label text-md-start">{{ __('Telepon') }}</label>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <input id="telepon" type="text" class="form-control @error('telepon') is-invalid @enderror"
+                    value="{{ $user->telepon ?? '' }}" placeholder="Masukkan Nomor Telepon">
+
+                    @error('telepon')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -60,57 +63,37 @@
             </div>
 
             <div class="row mb-3">
-                <label for="email" class="col-md-4 col-form-label text-md-start">{{ __('Telepon') }}</label>
+                <label for="jenisKelamin" class="col-md-4 col-form-label text-md-start">{{ __('Jenis Kelamin') }}</label>
             </div>
 
             <div class="row mb-3">
-                <div class="col-md-12">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                        value="{{ $errors->any() ? old('name') : $user->email }}" placeholder="Masukkan Alamat Email">
-
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                <div class="col-md-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="jenisKelamin" id="radioLakiLaki"
+                               value="Laki-laki" {{ $user->jenisKelamin === 'Laki-laki' ? 'checked' : '' }}
+                               {{ $user->jenisKelamin ? 'disabled' : '' }}>
+                        <label class="form-check-label" for="radioLakiLaki">Laki-laki</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="jenisKelamin" id="radioPerempuan"
+                               value="Perempuan" {{ $user->jenisKelamin === 'Perempuan' ? 'checked' : '' }}
+                               {{ $user->jenisKelamin ? 'disabled' : '' }}>
+                        <label class="form-check-label" for="radioPerempuan">Perempuan</label>
+                    </div>
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label for="email" class="col-md-4 col-form-label text-md-start">{{ __('Jenis Kelamin') }}</label>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-md-12">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                        value="{{ $errors->any() ? old('name') : $user->email }}" placeholder="Masukkan Alamat Email">
-
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="email" class="col-md-4 col-form-label text-md-start">{{ __('Tentang Saya') }}</label>
+                <label for="tentangSaya" class="col-md-4 col-form-label text-md-start">{{ __('Tentang Saya') }}</label>
             </div>
 
             <div class="row mb-5">
                 <div class="col-md-12">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                        value="{{ $errors->any() ? old('name') : $user->email }}" placeholder="Masukkan Alamat Email">
-
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                    <textarea id="tentangSaya" class="form-control" rows="7" cols="50">{{ $user->tentangSaya }}</textarea>
                 </div>
             </div>
 
-            <div class="row justify-content-center">
+            <div class="row justify-content-center mb-5">
                 <div class="col-md-2 d-grid text-center">
                     <a href="{{ route('home') }}" class="btn btn-outline-dark btn-lg"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
                 </div>
