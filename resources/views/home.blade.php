@@ -18,11 +18,14 @@
                     <div class="carousel-inner">
                         @foreach ($articles as $key => $article)
                             <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                                <img src="{{ Vite::asset('resources/images/hero.png') }}" class="d-block w-100"
-                                    alt="Image {{ $article->judul }}">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>{{ $article->judul }}</h5>
-                                </div>
+                                <<a
+                                    href="{{ route('articles.show', ['id' => $article->id, 'title' => urlencode($article->judul)]) }}">
+                                    <img src="{{ Vite::asset('resources/images/hero.png') }}" class="d-block w-100"
+                                        alt="Image {{ $key + 1 }}">
+                                    </a>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>{{ $article->judul }}</h5>
+                                    </div>
                             </div>
                         @endforeach
                     </div>
@@ -46,6 +49,14 @@
         <div class="kanan col-6 col-md-3">
             <h3 class="m-3">Paling Dicarssi</h3>
             <hr>
+
+            @foreach ($articles as $article)
+                <li>
+                    <a href="{{ route('articles.show', ['id' => $article->id, 'title' => urlencode($article->judul)]) }}">
+                        {{ $article->judul }}
+                    </a>
+                </li>
+            @endforeach
         </div>
     </div>
 @endsection

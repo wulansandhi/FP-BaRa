@@ -51,6 +51,7 @@ class ArticleController extends Controller
     public function show($id, $title)
     {
         $article = Article::findOrFail($id);
+        $article->increment('views');
         return view('admin.show', [
             'pageTitle' => urldecode($title),
             'article' => $article,

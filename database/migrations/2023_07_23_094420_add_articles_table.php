@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -17,6 +16,7 @@ return new class extends Migration
             $table->string('penulis');
             $table->date('tanggalRilis');
             $table->string('isi');
+            $table->unsignedInteger('views')->default(0);
             $table->foreignId('kategori_id')->constrained();
             $table->timestamps();
         });
