@@ -21,3 +21,8 @@ body{
 h1{
     font-size: 90pt;
 }
+
+.kanan{
+    background-color: white;
+    height: 100vh;
+}
