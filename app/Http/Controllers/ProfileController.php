@@ -11,22 +11,18 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        // Get the authenticated user's data
+        $pageTitle = 'User Profile';
         $user = Auth::user();
 
-        // Add any additional data you want to pass to the view
-        $pageTitle = 'User Profile';
-
-        // Return the view with the user's data
-        return view('profile', compact('user', 'pageTitle'));
+        return view('profile', compact('pageTitle', 'user'));
     }
 
     public function edit()
     {
+        $pageTitle = 'Edit Profile';
         $user = Auth::user();
 
-        $pageTitle = 'Edit Profile';
-        return view('profile.edit', compact('user', 'pageTitle'));
+        return view('profile', compact('pageTitle', 'user'));
     }
 
     /**
@@ -34,29 +30,41 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        // Validate the form data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . Auth::id(), // Unique email except for the authenticated user
-            'password' => 'nullable|string|min:8|confirmed', // Optional password update
-        ]);
-
-        // Get the authenticated user
         $user = Auth::user();
+        $messages = [
+            'required' => ':Attribute harus diisi.',
+            'email' => 'Isi :attribute dengan format yang benar',
+            'numeric' => 'Isi :attribute dengan angka',
+        ];
 
-        // Update the user's data
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required',
+                'email' => 'required|email',
+                'tanggalLahir' => 'nullable|date',
+                'telepon' => 'nullable|numeric',
+                'jenisKelamin' => 'nullable|in:Laki-laki,Perempuan',
+                'tentangSaya' => 'nullable|string',
+            ],
+            $messages
+        );
 
-        // Check if the password is being updated and set the new password
-        if ($request->filled('password')) {
-            $user->password = bcrypt($request->input('password'));
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
         }
 
-        // Save the updated user data
-        $user->save();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->tanggalLahir = $request->tanggalLahir;
+        $user->telepon = $request->telepon;
+        $user->jenisKelamin = $request->jenisKelamin;
+        $user->tentangSaya = $request->tentangSaya;
 
-        // Redirect back to the profile edit page with a success message
-        return redirect()->route('profile.edit')->with('success', 'Profile updated successfully.');
+        $user->save();
+        return redirect()->route('profile.edit');
     }
 }
