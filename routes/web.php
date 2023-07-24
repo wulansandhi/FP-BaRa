@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ArticleController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,21 +14,12 @@ use Illuminate\Http\Request;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/', function () {
-    $pageTitle = "BaRa - Baca Aksara";
-    return view('welcome', compact("pageTitle"));
+    return view('welcome');
 });
 
-Route::middleware(['auth'])->group(function () {
-    // Article
-    Route::resource('admin', ArticleController::class);
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-});
+Route::resource('profile', ProfileController::class);
 
-Auth::routes();
+Route::resource('search', SearchController::class);
 
-Route::get('/articles/{id}/{title}', [ArticleController::class, 'show'])->name('articles.show');

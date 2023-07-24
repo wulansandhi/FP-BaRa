@@ -2,26 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
-use App\Models\Article;
-use App\Models\Kategori;
 
-class ArticleController extends Controller
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pageTitle = 'Article List';
-        // ELOQUENT
-        $articles = Article::all();
-        return view('admin.index', [
-            'pageTitle' => $pageTitle,
-            'articles' => $articles
-        ]);
+        return view('search.search');
     }
 
     /**
@@ -29,12 +20,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $pageTitle = 'Buat Artikel';
-
-        // ELOQUENT
-        $kategori = Kategori::all();
-
-        return view('admin.create', compact('pageTitle', 'kategori'));
+        //
     }
 
     /**
@@ -48,14 +34,9 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id, $title)
+    public function show(string $id)
     {
-        $article = Article::findOrFail($id);
-        $article->increment('views');
-        return view('admin.show', [
-            'pageTitle' => urldecode($title),
-            'article' => $article,
-        ]);
+        //
     }
 
     /**
