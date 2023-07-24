@@ -1,0 +1,1 @@
+<?php /**PATH D:\FW\FP_Bara\resources\views/profile.blade.php ENDPATH**/ ?>
