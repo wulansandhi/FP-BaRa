@@ -9,7 +9,7 @@
     <div class="container-fluid"></div>
     <div class="row g-0">
         <div class="kiri col-sm-6 col-md-9">
-            <h3 class="m-3">Disajikan untuk Anda</h3>
+            <h1 class="m-3">Disajikan untuk Anda</h1>
             <hr>
 
             <div class="container mt-4">
@@ -20,11 +20,11 @@
                             <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                                 <<a
                                     href="{{ route('articles.show', ['id' => $article->id, 'title' => urlencode($article->judul)]) }}">
-                                    <img src="{{ Vite::asset('resources/images/hero.png') }}" class="d-block w-100"
-                                        alt="Image {{ $key + 1 }}">
+                                    <img src="{{ Vite::asset('storage/app/' . $article->foto) }}"
+                                        class="fotoSlide d-block w-100" alt="Image {{ $key + 1 }}">
                                     </a>
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>{{ $article->judul }}</h5>
+                                        <h2>{{ $article->judul }}</h2>
                                     </div>
                             </div>
                         @endforeach
@@ -41,22 +41,21 @@
                     </a>
                 </div>
             </div>
-
-            <!-- Add Bootstrap JS link here -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+            <hr class="hr my-5 align-self-center">
         </div>
         <div class="kanan col-6 col-md-3">
-            <h3 class="m-3">Paling Dicarssi</h3>
+            <h4 class="m-md-4">Paling Dicarssi</h4>
             <hr>
-
-            @foreach ($articles as $article)
-                <li>
-                    <a href="{{ route('articles.show', ['id' => $article->id, 'title' => urlencode($article->judul)]) }}">
-                        {{ $article->judul }}
-                    </a>
-                </li>
-            @endforeach
+            <ul>
+                @foreach ($articles->sortByDesc('views')->take(10) as $article)
+                    <li class="mt-3">
+                        <a class="textPD fw-bold fs-5"
+                            href="{{ route('articles.show', ['id' => $article->id, 'title' => urlencode($article->judul)]) }}">
+                            {{ $article->judul }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
         </div>
     </div>
 @endsection
