@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- <div class="container-fluid"> --}}
     <div class="row g-0">
 
         <div class="linkPath m-3 fs-5">

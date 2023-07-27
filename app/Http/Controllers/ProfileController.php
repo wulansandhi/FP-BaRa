@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileController extends Controller
 {
@@ -58,7 +59,6 @@ class ProfileController extends Controller
                 ->withInput();
         }
 
-        // Validate email input manually (optional)
         if (empty($request->email)) {
             return redirect()
                 ->back()
@@ -74,6 +74,8 @@ class ProfileController extends Controller
         $user->tentangSaya = $request->tentangSaya;
 
         $user->save();
+
+        Alert::success('Changed Successfully', 'Profile Changed Successfully.');
         return redirect()->route('profile.edit');
     }
 
@@ -104,16 +106,15 @@ class ProfileController extends Controller
             return redirect()
                 ->back()
                 ->withErrors([
-                    'current_password' => 'Current password is incorrect.',
+                    'current_password' => 'Kata Sandi Salah',
                 ])
                 ->withInput();
         }
 
         $user->password = Hash::make($request->new_password);
         $user->save();
+        Alert::success('Changed Successfully', 'Password Changed Successfully.');
 
-        return redirect()
-            ->route('profile.editPassword')
-            ->with('success', 'Password updated successfully!');
+        return redirect()->route('profile.editPassword');
     }
 }

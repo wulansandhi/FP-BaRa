@@ -12,7 +12,6 @@ class SearchController extends Controller
         $query = $request->input('query');
         $pageTitle = 'Pencarian: ' . $query;
 
-        // Perform the search query to fetch relevant articles
         $articles = Article::where('judul', 'like', "%$query%")
             ->orWhere('isi', 'like', "%$query%")
             ->get();

@@ -7,7 +7,7 @@
             </div>
             <div class="col-lg-3 col-xl-2">
                 <div class="d-grid gap-2">
-                    <a href="{{ route('admin.create') }}" class="btn btn-secondary">Create Article</a>
+                    <a href="{{ route('admin.create') }}" class="btn btn-secondary">Tambah Artikel</a>
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ArticleController extends Controller
 {
@@ -43,41 +44,26 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the form data
         $validator = Validator::make($request->all(), [
             'judul' => 'required|max:255',
-            // Exclude the current article's ID from unique check
             'penulis' => 'required|max:255',
             'tanggalRilis' => 'required|date',
             'isi' => 'required',
             'kategori' => 'required|exists:kategoris,id',
-            // Make sure the selected category exists in the 'kategoris' table
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate the uploaded image (optional)
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Redirect back to the form with errors if validation fails
         if ($validator->fails()) {
             return back()
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        // Handle the file upload if an image is provided
         $fotoPath = null;
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
             $fotoPath = $foto->store('public/images');
         }
-
-        // Create the article using Eloquent and save it to the database
-        // Article::create([
-        //     'judul' => $request->input('judul'),
-        //     'penulis' => $request->input('penulis'),
-        //     'tanggalRilis' => $request->input('tanggalRilis'),
-        //     'isi' => $request->input('isi'),
-        //     'kategori_id' => $request->input('kategori'),
-        //     'foto' => $fotoPath,
-        // ]);
 
         $article = new Article();
         $article->judul = $request->judul;
@@ -89,11 +75,9 @@ class ArticleController extends Controller
             $article->foto = $fotoPath;
         }
         $article->save();
+        Alert::success('Added Successfully', 'Article Added Successfully.');
 
-        // Redirect to the article index page with a success message
-        return redirect()
-            ->route('admin.index')
-            ->with('success', 'Article created successfully!');
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -132,40 +116,32 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validate the form data
         $validator = Validator::make($request->all(), [
             'judul' => 'required|max:255',
             'penulis' => 'required|max:255',
             'tanggalRilis' => 'required|date',
             'isi' => 'required',
             'kategori' => 'required|exists:kategoris,id',
-            // Make sure the selected category exists in the 'kategoris' table
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate the uploaded image (optional)
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Redirect back to the form with errors if validation fails
         if ($validator->fails()) {
             return back()
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        // Find the article by ID
         $article = Article::findOrFail($id);
 
-        // Handle the file upload if a new image is provided
         $fotoPath = $article->foto;
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
-            // Delete the previous image if it exists
             if ($fotoPath && Storage::exists($fotoPath)) {
                 Storage::delete($fotoPath);
             }
-            // Store the new image
             $fotoPath = $foto->store('public/images');
         }
 
-        // Update the article attributes
         $article->judul = $request->judul;
         $article->penulis = $request->penulis;
         $article->tanggalRilis = $request->tanggalRilis;
@@ -173,17 +149,15 @@ class ArticleController extends Controller
         $article->kategori_id = $request->kategori;
         $article->foto = $fotoPath;
 
-        // Save the updated article to the database
         $article->save();
+        Alert::success('Changed Successfully', 'Article Changed Successfully.');
 
-        // Redirect to the article index page with a success message
-        return redirect()
-            ->route('admin.index')
-            ->with('success', 'Article updated successfully!');
+        return redirect()->route('admin.index');
     }
     public function destroy($id)
     {
         Article::find($id)->delete();
+        Alert::success('Deleted Successfully', 'Article Deleted Successfully.');
 
         return redirect()->route('admin.index');
     }

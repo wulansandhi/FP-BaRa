@@ -39,10 +39,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile/update-password', [ProfileController::class, 'editPassword'])->name('profile.editPassword');
     Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
     Route::post('/admin/articles/update/{id}', [ArticleController::class, 'update'])->name('admin.update');
-
-
-
-
 });
 
 Auth::routes();

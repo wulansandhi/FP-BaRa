@@ -99,10 +99,10 @@
             <div class="row justify-content-center mb-5">
                 <div class="col-md-2 d-grid text-center">
                     <a href="{{ route('home') }}" class="btn btn-outline-dark btn-lg"><i
-                            class="bi-arrow-left-circle me-2"></i> Cancel</a>
+                            class="bi-arrow-left-circle me-2"></i> Kembali</a>
                 </div>
                 <div class="col-md-2 d-grid text-center">
-                    <button type="submit" class="btn btn-dark btn-lg"><i class="bi-check-circle me-2"></i> Edit</button>
+                    <button type="submit" class="btn btn-dark btn-lg"><i class="bi-check-circle me-2"></i>Simpan</button>
                 </div>
             </div>
     </div>
