@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
     <div class="container-sm mt-5">
-        <form action="{{ route('admin.update') }}" method="POST" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.update', ['id' => $article->id]) }}" enctype="multipart/form-data">
+            @method('POST')
             @csrf
             <div class="row justify-content-center">
                 <div class="p-5 bg-light rounded-3 border col-xl-6">

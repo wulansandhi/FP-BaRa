@@ -45,7 +45,7 @@ class ArticleController extends Controller
     {
         // Validate the form data
         $validator = Validator::make($request->all(), [
-            'judul' => 'required|unique:articles,judul|max:255',
+            'judul' => 'required|max:255',
             // Exclude the current article's ID from unique check
             'penulis' => 'required|max:255',
             'tanggalRilis' => 'required|date',
@@ -70,14 +70,25 @@ class ArticleController extends Controller
         }
 
         // Create the article using Eloquent and save it to the database
-        Article::create([
-            'judul' => $request->input('judul'),
-            'penulis' => $request->input('penulis'),
-            'tanggalRilis' => $request->input('tanggalRilis'),
-            'isi' => $request->input('isi'),
-            'kategori_id' => $request->input('kategori'),
-            'foto' => $fotoPath,
-        ]);
+        // Article::create([
+        //     'judul' => $request->input('judul'),
+        //     'penulis' => $request->input('penulis'),
+        //     'tanggalRilis' => $request->input('tanggalRilis'),
+        //     'isi' => $request->input('isi'),
+        //     'kategori_id' => $request->input('kategori'),
+        //     'foto' => $fotoPath,
+        // ]);
+
+        $article = new Article();
+        $article->judul = $request->judul;
+        $article->penulis = $request->penulis;
+        $article->tanggalRilis = $request->tanggalRilis;
+        $article->isi = $request->isi;
+        $article->kategori_id = $request->kategori;
+        if ($fotoPath != null) {
+            $article->foto = $fotoPath;
+        }
+        $article->save();
 
         // Redirect to the article index page with a success message
         return redirect()
@@ -155,11 +166,11 @@ class ArticleController extends Controller
         }
 
         // Update the article attributes
-        $article->judul = $request->input('judul');
-        $article->penulis = $request->input('penulis');
-        $article->tanggalRilis = $request->input('tanggalRilis');
-        $article->isi = $request->input('isi');
-        $article->kategori_id = $request->input('kategori');
+        $article->judul = $request->judul;
+        $article->penulis = $request->penulis;
+        $article->tanggalRilis = $request->tanggalRilis;
+        $article->isi = $request->isi;
+        $article->kategori_id = $request->kategori;
         $article->foto = $fotoPath;
 
         // Save the updated article to the database
@@ -172,5 +183,8 @@ class ArticleController extends Controller
     }
     public function destroy($id)
     {
+        Article::find($id)->delete();
+
+        return redirect()->route('admin.index');
     }
 }
