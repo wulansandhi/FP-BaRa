@@ -84,13 +84,16 @@ class ArticleController extends Controller
      */
     public function show($id, $title)
     {
+
+        $articles = Article::All();
         $article = Article::findOrFail($id);
         $article->increment('views');
         $kategori = Kategori::findOrFail($id);
         return view('admin.show', [
             'pageTitle' => urldecode($title),
             'article' => $article,
-            'kategoris' => $kategori
+            'kategoris' => $kategori,
+            'articles' => $articles
         ]);
     }
 

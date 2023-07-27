@@ -18,14 +18,14 @@
                     <div class="carousel-inner">
                         @foreach ($articles as $key => $article)
                             <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                                <<a
+                                <a
                                     href="{{ route('articles.show', ['id' => $article->id, 'title' => urlencode($article->judul)]) }}">
                                     <img src="{{ Vite::asset('storage/app/' . $article->foto) }}"
                                         class="fotoSlide d-block w-100" alt="Image {{ $key + 1 }}">
-                                    </a>
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h2>{{ $article->judul }}</h2>
-                                    </div>
+                                </a>
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h2>{{ $article->judul }}</h2>
+                                </div>
                             </div>
                         @endforeach
                     </div>
@@ -42,12 +42,29 @@
                 </div>
             </div>
             <hr class="hr my-5 align-self-center">
+            <div class="row m-3">
+                @foreach ($articles->sortByDesc('views')->take(9) as $article)
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <a
+                                href="{{ route('articles.show', ['id' => $article->id, 'title' => urlencode($article->judul)]) }}">
+                                <img src="{{ Vite::asset('storage/app/' . $article->foto) }}" class="card-img-top fotoGrid"
+                                    alt="{{ $article->title }}">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $article->judul }}</h5>
+                                <p class="card-text">{{ $article->deskripsi }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
         <div class="kanan col-6 col-md-3">
             <h4 class="m-md-4">Paling Dicarssi</h4>
             <hr>
             <ul>
-                @foreach ($articles->sortByDesc('views')->take(10) as $article)
+                @foreach ($articles->take(10) as $article)
                     <li class="mt-3">
                         <a class="textPD fw-bold fs-5"
                             href="{{ route('articles.show', ['id' => $article->id, 'title' => urlencode($article->judul)]) }}">
