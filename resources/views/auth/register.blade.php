@@ -7,9 +7,10 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="mb-3 text-center">
-                    <h4>Register BaRa</h4>
+                    <i class="bi-person-circle fs-1"></i>
+                    <h4>Tambah Admin</h4>
                 </div>
-                <hr>
+                <hr class="mb-5">
 
                 <div class="row mb-3">
                     <label for="name" class="col-md-4 col-form-label text-md-start">{{ __('Nama') }}</label>
@@ -70,10 +71,10 @@
                 <div class="row mb-0">
                     <div class="col-md-12 text-center">
                         <button type="submit" class="btn btn-danger">
-                            {{ __('Back') }}
+                            {{ __('Kembali') }}
                         </button>
                         <button type="submit" class="btn btn-primary">
-                            {{ __('Register') }}
+                            {{ __('Tambah') }}
                         </button>
                     </div>
                 </div>

@@ -20,7 +20,7 @@ class ArticleController extends Controller
         $articles = Article::all();
         return view('admin.index', [
             'pageTitle' => $pageTitle,
-            'articles' => $articles
+            'articles' => $articles,
         ]);
     }
 
@@ -55,7 +55,9 @@ class ArticleController extends Controller
 
         // Redirect back to the form with errors if validation fails
         if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
+            return back()
+                ->withErrors($validator)
+                ->withInput();
         }
 
         // Handle the file upload if an image is provided
@@ -76,7 +78,9 @@ class ArticleController extends Controller
         ]);
 
         // Redirect to the article index page with a success message
-        return redirect()->route('admin.index')->with('success', 'Article created successfully!');
+        return redirect()
+            ->route('admin.index')
+            ->with('success', 'Article created successfully!');
     }
 
     /**
@@ -84,7 +88,6 @@ class ArticleController extends Controller
      */
     public function show($id, $title)
     {
-
         $articles = Article::All();
         $article = Article::findOrFail($id);
         $article->increment('views');
@@ -93,31 +96,75 @@ class ArticleController extends Controller
             'pageTitle' => urldecode($title),
             'article' => $article,
             'kategoris' => $kategori,
-            'articles' => $articles
+            'articles' => $articles,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $pageTitle = 'Edit Artikel';
+
+        // ELOQUENT
+        $article = Article::findOrFail($id);
+        $kategori = Kategori::all();
+
+        return view('admin.edit', compact('pageTitle', 'article', 'kategori'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        // Validate the form data
+        $validator = Validator::make($request->all(), [
+            'judul' => 'required|max:255',
+            'penulis' => 'required|max:255',
+            'tanggalRilis' => 'required|date',
+            'isi' => 'required',
+            'kategori' => 'required|exists:kategoris,id',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Redirect back to the form with errors if validation fails
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Find the article by ID
+        $article = Article::findOrFail($id);
+
+        // Handle the file upload if an image is provided
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $fotoPath = $foto->store('public/images');
+            $article->foto = $fotoPath;
+        }
+
+        // Update the article data
+        $article->judul = $request->input('judul');
+        $article->penulis = $request->input('penulis');
+        $article->tanggalRilis = $request->input('tanggalRilis');
+        $article->isi = $request->input('isi');
+        $article->kategori_id = $request->input('kategori');
+
+        $article->save();
+
+        // Redirect to the article index page with a success message
+        return redirect()
+            ->route('admin.index')
+            ->with('success', 'Article updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
     }
 }
