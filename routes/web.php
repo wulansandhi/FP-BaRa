@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ArticleController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,9 +38,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/profile/update-password', [ProfileController::class, 'editPassword'])->name('profile.editPassword');
     Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
+    Route::post('/admin/articles/update/{id}', [ArticleController::class, 'update'])->name('admin.update');
+
+
+
 
 });
 
 Auth::routes();
 
 Route::get('/articles/{id}/{title}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('/search', [SearchController::class, 'index'])->name('search');
