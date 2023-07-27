@@ -9,7 +9,6 @@
                     <div class="mb-3 text-center">
                         <h4>Login BaRa</h4>
                     </div>
-                    <hr>
 
                     <div class="row mb-3">
                         <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Alamat Email') }}</label>

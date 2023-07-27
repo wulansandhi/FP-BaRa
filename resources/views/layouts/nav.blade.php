@@ -21,6 +21,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         @if (Auth::check())
                             <li><a class="dropdown-item" href="{{ route('profile') }}">Profil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('register') }}">Tambah Admin</a></li>
                             <li><a class="dropdown-item" href="{{ route('profile') }}">Ubah Password</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.index') }}">Artikel</a></li>
                             <li>
@@ -37,7 +38,6 @@
                             </li>
                         @else
                             <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
-                            <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
                         @endif
                     </ul>
                 </div>

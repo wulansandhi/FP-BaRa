@@ -25,10 +25,11 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    // Article
     Route::resource('admin', ArticleController::class);
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/articles/edit/{id}', [ArticleController::class, 'edit'])->name('articles.edit');
+    Route::get('admin/articles/{id}/edit', 'ArticleController@edit')->name('admin.articles.edit');
+    Route::delete('admin/articles/{id}', 'ArticleController@destroy')->name('admin.articles.destroy');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
 
