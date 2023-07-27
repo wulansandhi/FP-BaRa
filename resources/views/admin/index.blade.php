@@ -11,30 +11,40 @@
                 </div>
             </div>
         </div>
-        <hr>
-        <table class="table table-bordered table-hover table-striped">
-            <thead>
-                <tr class="table-secondary">
-                    <th>Judul</th>
-                    <th>Penulis</th>
-                    <th>Tanggal Rilis</th>
-                    <th>Isi</th>
-                    <th>Kategori</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($articles as $articles)
+        <hr class="my-4">
+        <div class="table-responsive border p-4 rounded-3">
+            <table class="table table-bordered table-hover table-striped" id="articleTable">
+                <thead>
                     <tr>
-                        <td>{{ $articles->judul }}</td>
-                        <td>{{ $articles->penulis }}</td>
-                        <td>{{ $articles->tanggalRilis }}</td>
-                        <td>{{ $articles->isi }}</td>
-                        <td>{{ $articles->kategori->deskripsi }}</td>
-                        <td>@include('admin.actions')</td>
+                        <th>Judul</th>
+                        <th>Penulis</th>
+                        <th>Tanggal Rilis</th>
+                        <th>Isi</th>
+                        <th>Kategori</th>
+                        <th></th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($articles as $articles)
+                        <tr>
+                            <td>{{ $articles->judul }}</td>
+                            <td>{{ $articles->penulis }}</td>
+                            <td>{{ $articles->tanggalRilis }}</td>
+                            <td>{{ $articles->isi }}</td>
+                            <td>{{ $articles->kategori->deskripsi }}</td>
+                            <td>@include('admin.actions')</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script type="module">
+        $(document).ready(function() {
+            $('#articleTable').DataTable();
+        });
+    </script>
+@endpush
