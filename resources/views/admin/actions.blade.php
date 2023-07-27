@@ -12,16 +12,17 @@ initial-scale=1.0">
 
 <body>
     <div class="d-flex">
-        <a href="{{ route('admin.show', ['admin' => $articles->id]) }}" class="btn btn-outline-dark btn-sm me-2"><i
-                class="bi-person-lines-fill"></i></a>
-        <a href="{{ route('admin.edit', ['admin' => $articles->id]) }}"
-            class="btn btn-outline-dark btn-sm me-2"><i class="bi-pencil-square"></i></a>
+        <a href="{{ route('articles.show', ['id' => $articles->id, 'title' => urlencode($articles->judul)]) }}"
+            class="btn btn-outline-dark btn-sm me-2"><i class="bi-person-lines-fill"></i></a>
+        <a href="{{ route('admin.edit', ['admin' => $articles->id]) }}" class="btn btn-outline-dark btn-sm me-2"><i
+                class="bi-pencil-square"></i></a>
         <div>
             <form action="{{ route('admin.destroy', ['admin' => $articles->id]) }}" method="POST">
                 @csrf
                 @method('delete')
                 <button type="submit" class="btn btn-danger btn-outline-light btn-sm
-me-2"><i class="bi-trash"></i></button>
+me-2"><i
+                        class="bi-trash"></i></button>
             </form>
         </div>
     </div>
