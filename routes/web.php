@@ -31,7 +31,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/articles/{id}/edit', 'ArticleController@edit')->name('admin.articles.edit');
     Route::delete('admin/articles/{id}', 'ArticleController@destroy')->name('admin.articles.destroy');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-    Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
+
+
 
 });
 
