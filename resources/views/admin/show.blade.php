@@ -20,7 +20,18 @@
             </div>
         </div>
         <div class="kananPage container col-sm-3">
-            <p>asd</p>
+            <h4 class="m-md-4">Artikel Terkait</h4>
+            <hr>
+            <ul>
+                @foreach ($articles as $article)
+                    <li class="mt-2">
+                        <a class="textPD fw-bold fs-5"
+                            href="{{ route('articles.show', ['id' => $article->id, 'title' => urlencode($article->judul)]) }}">
+                            {{ $article->judul }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
         </div>
     </div>
     {{-- </div> --}}
