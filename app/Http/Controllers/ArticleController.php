@@ -42,7 +42,41 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the form data
+        $validator = Validator::make($request->all(), [
+            'judul' => 'required|max:255',
+            'penulis' => 'required|max:255',
+            'tanggalRilis' => 'required|date',
+            'isi' => 'required',
+            'kategori' => 'required|exists:kategoris,id',
+            // Make sure the selected category exists in the 'kategoris' table
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate the uploaded image (optional)
+        ]);
+
+        // Redirect back to the form with errors if validation fails
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        // Handle the file upload if an image is provided
+        $fotoPath = null;
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $fotoPath = $foto->store('public/images');
+        }
+
+        // Create the article using Eloquent and save it to the database
+        Article::create([
+            'judul' => $request->input('judul'),
+            'penulis' => $request->input('penulis'),
+            'tanggalRilis' => $request->input('tanggalRilis'),
+            'isi' => $request->input('isi'),
+            'kategori_id' => $request->input('kategori'),
+            'foto' => $fotoPath,
+        ]);
+
+        // Redirect to the article index page with a success message
+        return redirect()->route('admin.index')->with('success', 'Article created successfully!');
     }
 
     /**
@@ -51,9 +85,12 @@ class ArticleController extends Controller
     public function show($id, $title)
     {
         $article = Article::findOrFail($id);
+        $article->increment('views');
+        $kategori = Kategori::findOrFail($id);
         return view('admin.show', [
             'pageTitle' => urldecode($title),
             'article' => $article,
+            'kategoris' => $kategori
         ]);
     }
 

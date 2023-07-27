@@ -14,18 +14,20 @@ class ArticleSeeder extends Seeder
     {
         DB::table('articles')->insert([
             [
-            'judul' => 'Viral video pria terjebak di beton pinggir pantai',
-            'penulis' => 'Wulan Permata Sandhi',
-            'tanggalRilis' => '2023-07-20',
-            'isi' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate deleniti consequuntur voluptatibus nihil veniam suscipit nisi. Harum inventore porro nobis placeat veniam asperiores, tempore quisquam vitae sequi voluptates amet libero',
-            'kategori_id' => '5'
+                'judul' => 'Viral video pria terjebak di beton pinggir pantai',
+                'penulis' => 'Wulan Permata Sandhi',
+                'tanggalRilis' => '2023-07-20',
+                'isi' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate deleniti consequuntur voluptatibus nihil veniam suscipit nisi. Harum inventore porro nobis placeat veniam asperiores, tempore quisquam vitae sequi voluptates amet libero',
+                'kategori_id' => '5',
+                'foto' => 'public/images/download.jpg'
             ],
             [
-            'judul' => '4 suara msterius konon pertanda hantu',
-            'penulis' => 'Ramaditya Bhaskara Mawanta',
-            'tanggalRilis' => '2023-07-18',
-            'isi' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate deleniti consequuntur voluptatibus nihil veniam suscipit nisi. Harum inventore porro nobis placeat veniam asperiores, tempore quisquam vitae sequi voluptates amet libero?',
-            'kategori_id' => '4'
+                'judul' => '4 suara msterius konon pertanda hantu',
+                'penulis' => 'Ramaditya Bhaskara Mawanta',
+                'tanggalRilis' => '2023-07-18',
+                'isi' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate deleniti consequuntur voluptatibus nihil veniam suscipit nisi. Harum inventore porro nobis placeat veniam asperiores, tempore quisquam vitae sequi voluptates amet libero?',
+                'kategori_id' => '4',
+                'foto' => 'public/images/download.jpg'
             ],
         ]);
     }

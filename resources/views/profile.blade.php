@@ -15,7 +15,8 @@
 
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <input id="name" type="text" class="form-control" value="{{ old('name', $user->name) }}" placeholder="Masukkan Nama">
+                    <input id="name" name="name" type="text" class="form-control"
+                        value="{{ old('name', $user->name) }}" placeholder="Masukkan Nama">
                 </div>
             </div>
 
@@ -25,7 +26,9 @@
 
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $user->email) }}" placeholder="Masukkan Alamat Email">
+                    <input id="email" name="email" type="email"
+                        class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $user->email) }}"
+                        placeholder="Masukkan Alamat Email">
 
                     @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -41,7 +44,8 @@
 
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <input id="tanggalLahir" type="date" class="form-control" value="{{ $user->tanggalLahir }}">
+                    <input id="tanggalLahir" name="tanggalLahir" type="date" class="form-control"
+                        value="{{ $user->tanggalLahir }}">
                 </div>
             </div>
 
@@ -51,8 +55,9 @@
 
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <input id="telepon" type="text" class="form-control @error('telepon') is-invalid @enderror"
-                    value="{{ $user->telepon ?? '' }}" placeholder="Masukkan Nomor Telepon">
+                    <input id="telepon" name="telepon" type="text"
+                        class="form-control @error('telepon') is-invalid @enderror" value="{{ $user->telepon ?? '' }}"
+                        placeholder="Masukkan Nomor Telepon">
 
                     @error('telepon')
                         <span class="invalid-feedback" role="alert">
@@ -70,14 +75,12 @@
                 <div class="col-md-6">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="jenisKelamin" id="radioLakiLaki"
-                               value="Laki-laki" {{ $user->jenisKelamin === 'Laki-laki' ? 'checked' : '' }}
-                               {{ $user->jenisKelamin ? 'disabled' : '' }}>
+                            value="Laki-laki" {{ $user->jenisKelamin === 'Laki-laki' ? 'checked' : '' }}>
                         <label class="form-check-label" for="radioLakiLaki">Laki-laki</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="jenisKelamin" id="radioPerempuan"
-                               value="Perempuan" {{ $user->jenisKelamin === 'Perempuan' ? 'checked' : '' }}
-                               {{ $user->jenisKelamin ? 'disabled' : '' }}>
+                            value="Perempuan" {{ $user->jenisKelamin === 'Perempuan' ? 'checked' : '' }}>
                         <label class="form-check-label" for="radioPerempuan">Perempuan</label>
                     </div>
                 </div>
@@ -89,13 +92,14 @@
 
             <div class="row mb-5">
                 <div class="col-md-12">
-                    <textarea id="tentangSaya" class="form-control" rows="7" cols="50">{{ $user->tentangSaya }}</textarea>
+                    <textarea id="tentangSaya" name="tentangSaya" class="form-control" rows="7" cols="50">{{ $user->tentangSaya }}</textarea>
                 </div>
             </div>
 
             <div class="row justify-content-center mb-5">
                 <div class="col-md-2 d-grid text-center">
-                    <a href="{{ route('home') }}" class="btn btn-outline-dark btn-lg"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
+                    <a href="{{ route('home') }}" class="btn btn-outline-dark btn-lg"><i
+                            class="bi-arrow-left-circle me-2"></i> Cancel</a>
                 </div>
                 <div class="col-md-2 d-grid text-center">
                     <button type="submit" class="btn btn-dark btn-lg"><i class="bi-check-circle me-2"></i> Edit</button>

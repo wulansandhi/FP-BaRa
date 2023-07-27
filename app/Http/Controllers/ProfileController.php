@@ -57,8 +57,16 @@ class ProfileController extends Controller
                 ->withInput();
         }
 
+        // Validate email input manually (optional)
+        if (empty($request->email)) {
+            return redirect()
+                ->back()
+                ->withErrors(['email' => 'Email harus diisi.'])
+                ->withInput();
+        }
+
         $user->name = $request->name;
-        $user->email = $request->email;
+        $user->email = $request->email; // Update the email field
         $user->tanggalLahir = $request->tanggalLahir;
         $user->telepon = $request->telepon;
         $user->jenisKelamin = $request->jenisKelamin;

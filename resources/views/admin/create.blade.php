@@ -25,7 +25,8 @@
                             <label for="penulis" class="form-label">Penulis</label>
                             <input class="form-control @error('penulis')
             is-invalid @enderror" type="text"
-                                name="penulis" id="penulis" value="{{ old('penulis') }}" placeholder="Masukkan Nama Penulis">
+                                name="penulis" id="penulis" value="{{ old('penulis') }}"
+                                placeholder="Masukkan Nama Penulis">
                             @error('penulis')
                                 <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
@@ -33,8 +34,9 @@
                         <div class="col-md-6 mb-3">
                             <label for="tanggalRilis" class="form-label">Tanggal Rilis</label>
                             <input class="form-control @error('tanggalRilis') is-invalid
-            @enderror" type="text"
-                                name="tanggalRilis" id="tanggalRilis" value="{{ old('tanggalRilis') }}" placeholder="YYYY-MM-DD">
+            @enderror"
+                                type="text" name="tanggalRilis" id="tanggalRilis" value="{{ old('tanggalRilis') }}"
+                                placeholder="YYYY-MM-DD">
                             @error('tanggalRilis')
                                 <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
@@ -43,7 +45,8 @@
                             <label for="isi" class="form-label">Isi</label>
                             <input class="form-control @error('isi') is-invalid
             @enderror" type="text"
-                                name="isi" id="isi" value="{{ old('isi') }}" placeholder="Masukkan Isi Artikel">
+                                name="isi" id="isi" value="{{ old('isi') }}"
+                                placeholder="Masukkan Isi Artikel">
                             @error('isi')
                                 <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
@@ -61,12 +64,19 @@
                                 <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
                         </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="foto" class="form-label">Foto</label>
+                            <input class="form-control @error('foto') is-invalid @enderror" type="file" name="foto"
+                                id="foto">
+                            @error('foto')
+                                <div class="text-danger"><small>{{ $message }}</small></div>
+                            @enderror
+                        </div>
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col-md-6 d-grid">
-                            <a href="{{ route('admin.index') }}"
-                                class="btn
+                            <a href="{{ route('admin.index') }}" class="btn
             btn-outline-dark btn-lg mt-3"><i
                                     class="bi-arrow-left-circle me-2"></i>
                                 Cancel</a>
