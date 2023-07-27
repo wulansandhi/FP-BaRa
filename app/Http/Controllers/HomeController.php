@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $pageTitle = 'Home';
-        $articles = Article::all(); // Fetch all articles from the database
+        $articles = Article::all();
         return view('Home', compact('pageTitle', 'articles'));
     }
 

@@ -79,12 +79,12 @@
                             <a href="{{ route('admin.index') }}" class="btn
             btn-outline-dark btn-lg mt-3"><i
                                     class="bi-arrow-left-circle me-2"></i>
-                                Cancel</a>
+                                Kembali</a>
                         </div>
                         <div class="col-md-6 d-grid">
-                            <button type="submit" class="btn btn-success btn-lg
+                            <button type="submit" class="btn btn-dark btn-lg
             mt-3"><i
-                                    class="bi-check-circle me-2"></i> Save</button>
+                                    class="bi-check-circle me-2"></i>Simpan</button>
                         </div>
                     </div>
                 </div>
