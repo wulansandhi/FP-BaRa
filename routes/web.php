@@ -30,6 +30,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/articles/{id}/edit', 'ArticleController@edit')->name('admin.articles.edit');
     Route::delete('admin/articles/{id}', 'ArticleController@destroy')->name('admin.articles.destroy');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile/update-password', [ProfileController::class, 'editPassword'])->name('profile.editPassword');
+    Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
+
 });
 
 Auth::routes();

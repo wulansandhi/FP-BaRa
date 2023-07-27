@@ -21,7 +21,7 @@
                         @if (Auth::check())
                             <li><a class="dropdown-item" href="{{ route('profile') }}">Profil</a></li>
                             <li><a class="dropdown-item" href="{{ route('register') }}">Tambah Admin</a></li>
-                            <li><a class="dropdown-item" href="{{ route('profile') }}">Ubah Password</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile.updatePassword') }}">Ubah Password</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.index') }}">Artikel</a></li>
                             <li>
                                 <hr class="dropdown-divider">
