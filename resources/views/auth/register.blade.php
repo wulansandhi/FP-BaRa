@@ -10,7 +10,7 @@
                     <i class="bi-person-circle fs-1"></i>
                     <h4>Tambah Admin</h4>
                 </div>
-                <hr class="mb-5">
+                <hr class="my-5">
 
                 <div class="row mb-3">
                     <label for="name" class="col-md-4 col-form-label text-md-start">{{ __('Nama') }}</label>

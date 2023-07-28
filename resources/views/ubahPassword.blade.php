@@ -16,7 +16,7 @@
 
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <input id="current_password" name="current_password" type="password" class="form-control @error('current_password') is-invalid @enderror" required autocomplete="current_password" placeholder="Enter Current Password">
+                    <input id="current_password" name="current_password" type="password" class="form-control @error('current_password') is-invalid @enderror" required autocomplete="current_password" placeholder="Masukkan Kata Sandi Lama">
 
                     @error('current_password')
                         <span class="invalid-feedback" role="alert">
@@ -32,7 +32,7 @@
 
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <input id="new_password" name="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" required autocomplete="new_password" placeholder="Enter New Password">
+                    <input id="new_password" name="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" required autocomplete="new_password" placeholder="Masukkan Kata Sandi Baru">
 
                     @error('new_password')
                         <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
 
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <input id="new_password_confirmation" name="new_password_confirmation" type="password" class="form-control" required autocomplete="new_password_confirmation" placeholder="Confirm New Password">
+                    <input id="new_password_confirmation" name="new_password_confirmation" type="password" class="form-control" required autocomplete="new_password_confirmation" placeholder="Konfirmasi Kata Sandi Baru">
                 </div>
             </div>
 

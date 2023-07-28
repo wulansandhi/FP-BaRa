@@ -7,12 +7,12 @@
             <div class="row justify-content-center">
                 <div class="p-5 bg-light rounded-3 border col-xl-6">
                     <div class="mb-3 text-center">
-                        <i class="bi-person-circle fs-1"></i>
-                        <h4>Buat Artikel</h4>
+                        <i class="bi bi-newspaper fs-1"></i>
+                        <h4>Edit Artikel</h4>
                     </div>
-                    <hr>
+                    <hr class="my-4">
                     <div class="row">
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-12 mb-3">
                             <label for="judul" class="form-label">Judul</label>
                             <input class="form-control @error('judul')
             is-invalid @enderror" type="text"
@@ -22,7 +22,7 @@
                                 <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-12 mb-3">
                             <label for="penulis" class="form-label">Penulis</label>
                             <input class="form-control @error('penulis')
             is-invalid @enderror" type="text"
@@ -32,17 +32,14 @@
                                 <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-12 mb-3">
                             <label for="tanggalRilis" class="form-label">Tanggal Rilis</label>
-                            <input class="form-control" type="text" name="tanggalRilis" id="tanggalRilis"
-                                value="{{ old('tanggalRilis', $article->tanggalRilis) }}" placeholder="YYYY-MM-DD">
+                            <input id="tanggalRilis" name="tanggalRilis" type="date" class="form-control" value="{{ old('tanggalRilis', $article->tanggalRilis) }}">
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-12 mb-3">
                             <label for="isi" class="form-label">Isi</label>
-                            <input class="form-control @error('isi') is-invalid
-            @enderror" type="text"
-                                name="isi" id="isi" value="{{ old('isi', $article->isi) }}"
-                                placeholder="Masukkan Isi Artikel">
+                            <textarea id="isi" name="isi" class="form-control @error('isi') is-invalid
+                                @enderror" rows="20" placeholder="Masukkan Isi Artikel">{{ old('isi', $article->isi) }}</textarea>
                             @error('isi')
                                 <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
