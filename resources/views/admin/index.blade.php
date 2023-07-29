@@ -30,7 +30,7 @@
                             <td>{{ $articles->judul }}</td>
                             <td>{{ $articles->penulis }}</td>
                             <td>{{ $articles->tanggalRilis }}</td>
-                            <td>{{ $articles->isi }}</td>
+                            <td>{{ Str::limit($articles->isi, 100, '...') }}</td>
                             <td>{{ $articles->kategori->deskripsi }}</td>
                             <td>@include('admin.actions')</td>
                         </tr>

@@ -15,7 +15,7 @@
                     <p>{{ $article->tanggalRilis }}</p>
                 </div>
                 <img class="fotoPage mt-3" src="{{ Vite::asset('storage/app/' . $article->foto) }}" alt="">
-                <p class="mt-3">{{ $article->isi }}</p>
+                <p class="isiShow mt-3">{{ $article->isi }}</p>
             </div>
         </div>
         <div class="kananPage container col-sm-3">

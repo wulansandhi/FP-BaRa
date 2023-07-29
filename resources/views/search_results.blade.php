@@ -15,14 +15,14 @@
                                 <h5 class="card-title">{{ $article->judul }}</h5>
                                 <p class="card-text">{{ $article->isi }}</p>
                                 <a href="{{ route('articles.show', ['id' => $article->id, 'title' => urlencode($article->judul)]) }}"
-                                    class="btn btn-primary">Read More</a>
+                                    class="btn btn-primary">Baca Sekarang</a>
                             </div>
                         </div>
                     </div>
                 @endforeach
             @else
                 <div class="col-12">
-                    <p class="text-center">No results found for the search query.</p>
+                    <p class="text-center">Maaf, pencarianmu tidak ada.</p>
                 </div>
             @endif
         </div>

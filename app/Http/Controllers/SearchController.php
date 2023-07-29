@@ -14,6 +14,7 @@ class SearchController extends Controller
 
         $articles = Article::where('judul', 'like', "%$query%")
             ->orWhere('isi', 'like', "%$query%")
+            ->orWhere('penulis', 'like', "%$query%")
             ->get();
 
         return view('search_results', ['articles' => $articles, 'pageTitle' => $pageTitle]);

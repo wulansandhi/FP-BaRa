@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('judul');
             $table->string('penulis');
             $table->date('tanggalRilis');
-            $table->string('isi');
+            $table->text('isi');
             $table->string('foto')->nullable();
             $table->unsignedInteger('views')->default(0);
             $table->foreignId('kategori_id')->constrained();
